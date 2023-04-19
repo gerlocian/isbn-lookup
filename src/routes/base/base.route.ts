@@ -1,17 +1,12 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { HttpMethod } from '../../types/http-method.type';
 import { RouteInterface } from '../../types/route-interface.type';
-import { RegexPathService } from '../../regex/regex-path.service';
+import { URLPattern } from '../../types/url-pattern.type';
 
 export abstract class BaseRoute implements RouteInterface {
-    private regexPathService: RegexPathService;
-
-    constructor(path?: string) {
-        this.regexPathService = new RegexPathService(path || this['path']);
-    }
-
     public matchesPath(path: string): boolean {
-        return !!path.match(this.regexPathService.getPathRegex());
+        const urlPattern = new URLPattern(new URL(this['path'], 'http://fulldomain'));
+        return urlPattern.test(new URL(path, 'http://fulldomain'));
     }
 
     public matchesHttpMethod(httpMethod: HttpMethod): boolean {

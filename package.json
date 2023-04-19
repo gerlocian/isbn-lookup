@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/gerlocian/isbn-lookup#readme",
   "dependencies": {
-    "rxjs": "^6.6.2"
+    "rxjs": "^6.6.2",
+    "urlpattern-polyfill": "^7.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

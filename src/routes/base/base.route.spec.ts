@@ -32,6 +32,14 @@ describe('Base Route', () => {
             const matchResult = testRoute.matchesPath('/badPath');
             expect(matchResult).to.be.a('boolean').and.equals(false);
         });
+
+        it('should fail to match on similar paths if they do not match', () => {
+            const matchResult1 = testRoute.matchesPath('/path/for/endpoint');
+            expect(matchResult1).to.be.a('boolean').and.equals(false);
+
+            const matchResult2 = testRoute.matchesPath('/path/for/endpoint/1234/extra');
+            expect(matchResult2).to.be.a('boolean').and.equals(false);
+        });
     });
 
     describe('matchesHttpMethod', () => {
