@@ -1,5 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { HttpMethod, RouteInterface } from '../types';
+import { HttpMethod } from '../../types/http-method.type';
+import { RouteInterface } from '../../types/route-interface.type';
 import { RegexPathService } from '../../regex/regex-path.service';
 
 export abstract class BaseRoute implements RouteInterface {

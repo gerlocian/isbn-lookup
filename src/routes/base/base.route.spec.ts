@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { IncomingMessage, ServerResponse } from 'http';
-import { HttpMethod } from '../types';
-import { Route } from '../decorators/route.decorator';
+import { HttpMethod } from '../../types/http-method.type';
+import { Route } from '../../decorators/route.decorator';
 import { BaseRoute } from './base.route';
 
 describe('Base Route', () => {
@@ -10,7 +10,7 @@ describe('Base Route', () => {
     beforeEach(() => {
         @Route(HttpMethod.Delete, '/path/for/endpoint/:id')
         class TestRoute extends BaseRoute {
-            public handle(request: IncomingMessage, response: ServerResponse): ServerResponse {
+            public handle(_: IncomingMessage, response: ServerResponse): ServerResponse {
                 return response;
             }
         }
@@ -20,17 +20,17 @@ describe('Base Route', () => {
 
     describe('matchesPath', () => {
         it('should exist', () => {
-           expect(testRoute.matchesPath).to.exist;
+            expect(testRoute.matchesPath).to.exist;
         });
 
         it('should match a provided path against the provided route path', () => {
-           const matchResult = testRoute.matchesPath('/path/for/endpoint/1234');
-           expect(matchResult).to.be.a('boolean').and.equals(true);
+            const matchResult = testRoute.matchesPath('/path/for/endpoint/1234');
+            expect(matchResult).to.be.a('boolean').and.equals(true);
         });
 
         it('should fail to match a provided path if it does not match the route path', () => {
-           const matchResult = testRoute.matchesPath('/badPath');
-           expect(matchResult).to.be.a('boolean').and.equals(false);
+            const matchResult = testRoute.matchesPath('/badPath');
+            expect(matchResult).to.be.a('boolean').and.equals(false);
         });
     });
 

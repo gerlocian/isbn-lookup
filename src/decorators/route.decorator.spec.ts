@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { Route } from './route.decorator';
-import { HttpMethod } from '../types';
+import { HttpMethod } from '../types/http-method.type';
 
 describe('@Route decorator', () => {
     let decoratedObject;
@@ -41,4 +41,4 @@ abstract class TestBaseRoute {
 }
 
 @Route(HttpMethod.Get, '/path/to/examine')
-class TestRoute extends TestBaseRoute {}
+class TestRoute extends TestBaseRoute { }
